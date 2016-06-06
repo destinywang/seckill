@@ -96,6 +96,14 @@ public class SeckillController {
         return result;
     }
 
+
+    /**
+     *
+     * @param seckillId 主键ID
+     * @param md5 md5加密串
+     * @param phone 用户电话
+     * @return json数据
+     */
     @RequestMapping(value = "/{seckillId}/{md5}/execution", method = RequestMethod.POST,
             produces = {"application/json;charset=UTF-8"})
     @ResponseBody
