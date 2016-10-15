@@ -40,7 +40,7 @@ public interface SeckillService {
      *
      * @param seckillId
      */
-    Exposer exprotSeckillUrl(long seckillId);
+    Exposer exportSeckillUrl(long seckillId);
 
 
     /**

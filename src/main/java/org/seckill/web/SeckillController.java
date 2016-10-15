@@ -87,7 +87,7 @@ public class SeckillController {
     public SeckillResult<Exposer> expose(@PathVariable("seckillId") Long seckillId) {
         SeckillResult<Exposer> result;
         try {
-            Exposer exposer = seckillService.exprotSeckillUrl(seckillId);
+            Exposer exposer = seckillService.exportSeckillUrl(seckillId);
             result = new SeckillResult<Exposer>(true, exposer);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
