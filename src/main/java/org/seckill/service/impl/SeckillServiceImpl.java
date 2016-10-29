@@ -75,7 +75,7 @@ public class SeckillServiceImpl implements SeckillService {
      * @param seckillId
      * @return
      */
-    public Exposer exprotSeckillUrl(long seckillId) {
+    public Exposer exportSeckillUrl(long seckillId) {
         // 优化点：缓存优化
         /**
          * get from cache
