@@ -19,10 +19,13 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * 采用RESTful架构进行设计
+ * /模块/资源/{资源id}/细分模块
+ *
  * Created by destiny on 2016/5/29.
  */
 @Controller
-@RequestMapping(value = "/seckill")//模块/资源/{id}/细分
+@RequestMapping(value = "/seckill")
 public class SeckillController {
 
     /**
@@ -42,7 +45,7 @@ public class SeckillController {
      * 该方法必须以GET方法调用
      *
      * @param model 数据模型，建议返回类型为String，参数为model
-     * @return
+     * @return      视图的相对路径
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
@@ -61,7 +64,7 @@ public class SeckillController {
      *
      * @param seckillId 秒杀物品id
      * @param model     模型对象
-     * @return 试图相对路径
+     * @return          视图相对路径
      */
     @RequestMapping(value = "/{seckillId}/detail", method = RequestMethod.GET)
     public String detail(@PathVariable("seckillId") Long seckillId, Model model) {
@@ -99,7 +102,6 @@ public class SeckillController {
 
 
     /**
-     *
      * @param seckillId 主键ID
      * @param md5 md5加密串
      * @param phone 用户电话
