@@ -69,8 +69,8 @@ public class SeckillController {
     @RequestMapping(value = "/{seckillId}/detail", method = RequestMethod.GET)
     public String detail(@PathVariable("seckillId") Long seckillId, Model model) {
 
-        /**
-         * 当id不存在时，将请求冲顶线到list，让他回到列表页面
+        /*
+         * 当id不存在时，将请求重定向到list，让他回到列表页面
          */
         if (seckillId == null) {
             return "redirect:/seckill/list";
