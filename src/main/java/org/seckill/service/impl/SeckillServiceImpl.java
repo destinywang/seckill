@@ -134,22 +134,17 @@ public class SeckillServiceImpl implements SeckillService {
     @Transactional
     public SeckillExecution executeSeckill(long seckillId, long userPhone, String md5)
             throws SeckillException, RepeatKillException, SeckillCloseException {
-
-        /**
+        /*
          * 当md5为null或与seckillId所计算的加密字符不相等时
          */
         if (md5 == null || !md5.equals(getMD5(seckillId))) {
             throw new SeckillException("seckill data rewrite");
         }
-        /**
+        /*
          * 执行秒杀逻辑：减库存，加购买行为
          */
-
         try {
-
-            /*
-            减库存
-             */
+            //减库存
             Date nowTime = new Date();
             int updateCount = seckillDao.reduceNumber(seckillId, nowTime);
             if (updateCount <= 0) {
