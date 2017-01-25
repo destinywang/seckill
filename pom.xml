@@ -156,7 +156,7 @@
             <version>1.7</version>
         </dependency>
 
-
+        <!-- 自定义序列化 -->
         <dependency>
             <groupId>com.dyuproject.protostuff</groupId>
             <artifactId>protostuff-core</artifactId>

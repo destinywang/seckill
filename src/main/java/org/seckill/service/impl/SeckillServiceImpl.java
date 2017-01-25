@@ -2,6 +2,7 @@ package org.seckill.service.impl;
 
 import org.seckill.dao.SeckillDao;
 import org.seckill.dao.SuccessKilledDao;
+import org.seckill.dao.cache.RedisDao;
 import org.seckill.dto.Exposer;
 import org.seckill.dto.SeckillExecution;
 import org.seckill.entity.Seckill;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class SeckillServiceImpl implements SeckillService {
     /**
      * 从Spring容器中获取DAO实例
      */
-    @Autowired
+    @Resource
     private SeckillDao seckillDao;
 
     /**
@@ -43,6 +45,9 @@ public class SeckillServiceImpl implements SeckillService {
      */
     @Autowired
     private SuccessKilledDao successKilledDao;
+
+    @Resource
+    private RedisDao redisDao;
 
     /**
      * MD5盐值字符串，用于混淆，越复杂越好
@@ -77,7 +82,7 @@ public class SeckillServiceImpl implements SeckillService {
      */
     public Exposer exportSeckillUrl(long seckillId) {
         // 优化点：缓存优化
-        /**
+        /*
          * get from cache
          * if null
          *      get from DB
@@ -86,20 +91,29 @@ public class SeckillServiceImpl implements SeckillService {
          *      get from cache
          * logic
          */
-        Seckill seckill = seckillDao.queryById(seckillId);
 
+        //1. 访问redis
+        Seckill seckill = redisDao.getSeckill(seckillId);
         if (seckill == null) {
-            return new Exposer(false, seckillId);
+            // 2. 缓存如果未命中，访问数据库
+            seckill = seckillDao.queryById(seckillId);
+            // 3. 如果数据库中也没有，返回信息
+            if (seckill == null) {
+                return new Exposer(false, seckillId);
+            } else {
+                // 4. 放入redis
+                redisDao.putSeckill(seckill);
+            }
         }
 
-        /**
+        /*
          * 拿到开始时间、结束时间和当前时间
          */
         Date startTime = seckill.getStartTime();
         Date endTime = seckill.getEndTime();
         Date nowTime = new Date();
 
-        /**
+        /*
          * 如果当前时间小于开始时间 或 当前时间大于结束时间
          */
         if (nowTime.getTime() < startTime.getTime()
