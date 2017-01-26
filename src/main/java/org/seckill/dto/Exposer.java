@@ -2,6 +2,7 @@ package org.seckill.dto;
 
 /**
  * 暴露秒杀地址DTO
+ *
  * Created by destiny on 2016/5/28.
  */
 public class Exposer {
