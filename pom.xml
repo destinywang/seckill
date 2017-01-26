@@ -7,6 +7,8 @@
     <version>1.0-SNAPSHOT</version>
     <name>seckill Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
+
     <dependencies>
         <!-- 使用注解的方式运行jUnit，因此改成4.11 -->
         <dependency>
@@ -179,10 +181,22 @@
             <scope>provided</scope>
         </dependency>
 
-        
-
+        <!-- lombok插件 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.12</version>
+        </dependency>
     </dependencies>
+
     <build>
         <finalName>seckill</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <version>1.16.8.0</version>
+            </plugin>
+        </plugins>
     </build>
 </project>

@@ -5,6 +5,7 @@ import org.seckill.enums.SeckillStateEnum;
 
 /**
  * 封装秒杀执行后的结果
+ *
  * Created by destiny on 2016/5/28.
  */
 public class SeckillExecution {
