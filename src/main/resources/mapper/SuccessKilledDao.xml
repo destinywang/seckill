@@ -8,6 +8,11 @@
         INSERT ignore INTO success_killed(seckill_id, user_phone, state)
         VALUES (#{seckillId}, #{userPhone}, 0)
     </insert>
+    
+    <insert id="insertSuccessKilledWithTime">
+        INSERT IGNORE INTO success_killed(seckill_id, user_phone, state, create_time)
+        VALUES (#{seckillId}, #{userPhone}, 0, #{createTime})
+    </insert>
 
     <select id="queryByIdWithSeckill" resultType="SuccessKilled">
         <!-- 根据id查询SuccessKilled并携带秒杀产品对象实体 -->

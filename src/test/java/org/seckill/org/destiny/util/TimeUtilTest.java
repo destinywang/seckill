@@ -9,6 +9,7 @@ import java.util.Date;
  *
  * @author destiny
  *         e-mail destinywk@163.com
+ *         github https://github.com/DestinyWang
  * @version JDK 1.8.0_101
  * @since 2017/1/26 23:54
  */

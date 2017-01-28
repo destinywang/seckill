@@ -42,7 +42,7 @@ CREATE TABLE success_killed(
   `create_time` TIMESTAMP NOT NULL COMMENT '创建时间',
   PRIMARY KEY (seckill_id, user_phone),/*联合主键*/
   KEY idx_create_time(create_time)
-)ENGINE=InnoDB DEFAULT CHARSET=utf-8 COMMENT '秒杀库存表';
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '秒杀库存表';
 
 -- 连接数据库控制台
 mysql -uroot -p123456
