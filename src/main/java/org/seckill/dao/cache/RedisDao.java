@@ -1,7 +1,6 @@
 package org.seckill.dao.cache;
 
 import com.dyuproject.protostuff.LinkedBuffer;
-import com.dyuproject.protostuff.ProtobufIOUtil;
 import com.dyuproject.protostuff.ProtostuffIOUtil;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
 import org.seckill.entity.Seckill;
